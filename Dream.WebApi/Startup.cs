@@ -36,7 +36,7 @@ namespace Dream.WebApi
             services.AddIdentity<DbUser, DbRole>(options => options.Stores.MaxLengthForKeys = 128)
                 .AddEntityFrameworkStores<EFContext>()
                 .AddDefaultTokenProviders();
-            services.AddControllers();
+            services.AddControllers();            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,6 +50,8 @@ namespace Dream.WebApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //SeederDB.SeedDataByAS(app.ApplicationServices);
 
             app.UseEndpoints(endpoints =>
             {

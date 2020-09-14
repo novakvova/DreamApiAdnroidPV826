@@ -12,6 +12,8 @@ namespace Dream.WebApi.Entities
         public static void SeedData(UserManager<DbUser> userManager,
                    RoleManager<DbRole> roleManager)
         {
+            
+
             var email = "admin@gmail.com";
             var roleName = "Admin";
             var findUser = userManager.FindByEmailAsync(email).Result;
