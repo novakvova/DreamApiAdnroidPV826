@@ -51,7 +51,7 @@ namespace Dream.WebApi
 
             app.UseAuthorization();
 
-            //SeederDB.SeedDataByAS(app.ApplicationServices);
+            SeederDB.SeedDataByAS(app.ApplicationServices);
 
             app.UseEndpoints(endpoints =>
             {
