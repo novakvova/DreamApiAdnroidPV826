@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dream.WebApi.Entities;
 using Dream.WebApi.Services;
@@ -32,7 +33,7 @@ namespace Dream.WebApi.Controllers
             _IJwtTokenService = IJwtTokenService;
         }
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]UserViewModel userViewModel)
+        public async Task<IActionResult> Login([FromBody]UserLoginViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -40,14 +41,14 @@ namespace Dream.WebApi.Controllers
                 return BadRequest("Bad Model");
             }
 
-            var user = _context.Users.FirstOrDefault(u => u.Email == userViewModel.Email);
+            var user = _context.Users.FirstOrDefault(u => u.Email == model.Email);
             if (user == null)
             {
                 return BadRequest(new { invalid = "Даний користувач не знайденний" });
             }
 
             var result = _signInManager
-                .PasswordSignInAsync(user, userViewModel.Password, false, false).Result;
+                .PasswordSignInAsync(user, model.Password, false, false).Result;
 
             if (!result.Succeeded)
             {
@@ -61,6 +62,56 @@ namespace Dream.WebApi.Controllers
                  {
                      token = _IJwtTokenService.CreateToken(user)
                  });
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody]UserViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            var roleName = "User";
+            var userReg = _context.Users.FirstOrDefault(x => x.Email == model.Email);
+            if (userReg != null)
+            {
+                return BadRequest(new { invalid = "Цей емейл вже зареєстровано." });
+            }
+            
+            if (model.Email == null)
+            {
+                return BadRequest(new { invalid = "Вкажіть пошту." } );
+            }
+            else
+            {
+                var testmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!testmail.IsMatch(model.Email))
+                {
+                    return BadRequest(new { invalid = "Невірно вказана почта." });
+                }
+            }
+            DbUser user = new DbUser
+            {
+                Email = model.Email,
+                UserName = model.Email,
+                Age = model.Age,
+                Phone = model.Phone,
+                Description = model.Description,
+            };
+            var res = _userManager.CreateAsync(user, model.Password).Result;
+            if (!res.Succeeded)
+            {
+                return BadRequest (new { invalid = " Код доступу має складатись з 8 символів, містити мінімум одну велику літеру! " });
+            }
+            res = _userManager.AddToRoleAsync(user, roleName).Result;
+
+            if (res.Succeeded)
+            {               
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                var token = _IJwtTokenService.CreateToken(user);
+                return Ok(token);
+            }
+            return BadRequest();
         }
     }
 }

@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 
 namespace Dream.WebApi.ViewModels
 {
-    public class UserViewModel
+    public class UserLoginViewModel
     {
         public string Email { get; set; }
-        public double Age { get; set; }
-        public string Phone { get; set; }
         public string Password { get; set; }
-        public string Description { get; set; }
     }
 }
