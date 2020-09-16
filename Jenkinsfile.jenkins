@@ -1,0 +1,42 @@
+#!groovy
+//  groovy Jenkinsfile
+properties([disableConcurrentBuilds()])
+
+pipeline  {
+    agent { 
+        label 'master'
+        }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
+        timestamps()
+    }
+    stages {
+        stage("Stop service") {
+            steps {
+                echo 'Stop process ...'
+                dir('.'){
+                  sh "sudo systemctl stop dreamapi.service"
+
+                }
+            }
+        }
+		stage("build") {
+            steps {
+                echo 'build ..'
+                dir('.'){
+                  sh "dotnet build"
+
+                }
+            }
+        }
+        stage("start service") {
+            steps {
+                 echo 'starting ..'
+                 dir('.'){
+                      sh "sudo systemctl start dreamapi.service"
+                 }
+            }
+        }
+
+    }
+}
