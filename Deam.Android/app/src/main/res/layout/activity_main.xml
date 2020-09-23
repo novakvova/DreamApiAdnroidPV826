@@ -22,12 +22,43 @@
         android:id="@+id/btn_plus"
         android:layout_width="55dp"
         android:layout_height="51dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginTop="364dp"
         android:onClick="btnClickPlus"
         android:text="+"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.168"
+        app:layout_constraintHorizontal_bias="0.162"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="btnClickcalculator"
+        android:text="calculator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_get_test"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="160dp"
+        android:layout_marginTop="16dp"
+        android:onClick="TestGet"
+        android:text="test get"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <TextView
+        android:id="@+id/textVtestGet"
+        android:layout_width="309dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="40dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get_test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
