@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         imageRequester = ImageRequester.getInstance();
         editImage = findViewById(R.id.chooseImage);
-        imageRequester.setImageFromUrl(editImage,"https://images.all-free-download.com/images/graphicthumb/beautiful_natural_scenery_04_hd_pictures_166229.jpg");
+        imageRequester.setImageFromUrl(editImage,"https://n1s2.hsmedia.ru/05/a8/93/05a893a483fdb95c14cb8376cbe108a3/440x326_21_ea602dbd9464a8f541855895da03cc01@690x460_0xc0a8392b_17375271931512042076.jpeg");
         textVtestGet = findViewById(R.id.textVtestGet);
     }
 
