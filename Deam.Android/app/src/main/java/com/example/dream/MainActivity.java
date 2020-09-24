@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.toolbox.NetworkImageView;
+import com.example.dream.network.ImageRequester;
 import com.example.dream.network.NetworkService;
 import com.example.dream.network.Post;
 
@@ -21,6 +23,8 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     TextView textVtestGet;
+    private ImageRequester imageRequester;
+    private NetworkImageView editImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         //Log.e("Semen","----Hello Peter-----");
         //Log.d("slava", "------dispaly----");
         setContentView(R.layout.activity_main);
+        imageRequester = ImageRequester.getInstance();
+        editImage = findViewById(R.id.chooseImage);
+        imageRequester.setImageFromUrl(editImage,"https://images.all-free-download.com/images/graphicthumb/beautiful_natural_scenery_04_hd_pictures_166229.jpg");
         textVtestGet = findViewById(R.id.textVtestGet);
     }
 

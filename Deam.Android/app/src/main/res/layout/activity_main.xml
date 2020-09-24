@@ -12,11 +12,11 @@
         android:text="Привіт!"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_plus"
-        app:layout_constraintVertical_bias="0.315" />
+        app:layout_constraintVertical_bias="0.404" />
 
     <Button
         android:id="@+id/btn_plus"
@@ -60,5 +60,16 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_get_test" />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/chooseImage"
+        android:layout_width="202dp"
+        android:layout_height="174dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="68dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_plus"
+        app:layout_constraintTop_toBottomOf="@+id/textVtestGet" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
