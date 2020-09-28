@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void btnClickLogin(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+    }
+
     public void TestGet(View v) {
         NetworkService.getInstance()
                 .getJSONApi()
