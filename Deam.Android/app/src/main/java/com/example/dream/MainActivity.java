@@ -16,6 +16,7 @@ import com.example.dream.network.ImageRequester;
 import com.example.dream.network.NetworkService;
 import com.example.dream.network.Post;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void btnClickcalculator(View v) {
         Intent intent = new Intent(this, CalculatorActivity.class);
+        startActivity(intent);
+    }
+    public void btnlogin(View v) {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 

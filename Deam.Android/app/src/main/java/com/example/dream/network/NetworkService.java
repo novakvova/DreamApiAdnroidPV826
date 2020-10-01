@@ -7,7 +7,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NetworkService {
     private static NetworkService mInstance;
-    private static final String BASE_URL = Urls.BASE_URL;
+    //private static final String BASE_URL = Urls.BASE_URL;
+    private static final String BASE_URL = "http://10.0.2.2:64828";
     //private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
     private Retrofit mRetrofit;
 

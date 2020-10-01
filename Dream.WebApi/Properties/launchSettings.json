@@ -21,7 +21,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "weatherforecast",
-      "applicationUrl": "http://localhost:64828",
+      "applicationUrl": "http://127.0.0.1:64828",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
