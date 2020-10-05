@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Dream.WebApi.Entities;
 using Dream.WebApi.Services;
 using Dream.WebApi.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -112,6 +115,15 @@ namespace Dream.WebApi.Controllers
                 return Ok(token);
             }
             return BadRequest();
+        }
+
+        [Authorize]
+        [HttpGet("userdata")]
+        public async Task<IActionResult> GetUserData()
+        {
+            var userName = User.Claims.FirstOrDefault(x => x.Type == "name").Value;
+            var user = await _userManager.FindByNameAsync(userName);
+            return Ok(user);
         }
     }
 }
