@@ -3,8 +3,10 @@ package com.example.dream;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.dream.network.Login;
 import com.example.dream.network.NetworkService;
@@ -49,9 +51,11 @@ public class LoginActivity extends AppCompatActivity {
                             //toast.show();
                             //saveJWTToken(post.getToken(),post.getRefreshToken());
                             //CommonUtils.hideLoading();
-                            //Intent intent = new Intent(MainActivity.this, MenuActivity.class);
-                            //startActivity(intent);
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            startActivity(intent);
                         } else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Not valid login or password" , Toast.LENGTH_LONG);
+                            toast.show();
                             //emailLayout.setError("");
                             //password.setError("Login or password was wrong");
                             //CommonUtils.hideLoading();
