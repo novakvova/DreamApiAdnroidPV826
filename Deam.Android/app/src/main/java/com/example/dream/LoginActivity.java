@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.dream.network.Login;
 import com.example.dream.network.NetworkService;
 import com.example.dream.network.Tokens;
+import com.example.dream.network.utils.CommonUtils;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -35,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         Login m = new Login();
         m.setEmail(email.getText().toString());
         m.setPassword(password.getText().toString());
+        CommonUtils.showLoading(this);
         NetworkService.getInstance()
                 .getJSONApi()
                 .login(m)
@@ -42,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(@NonNull Call<Tokens> call, @NonNull Response<Tokens> response) {
 
-
+                        CommonUtils.hideLoading();
                         if (response.errorBody() == null && response.isSuccessful()) {
                             //passwordLayout.setError("");
                             //loginButton.setError("");
@@ -68,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Call<Tokens> call, @NonNull Throwable t) {
 
-                        //CommonUtils.hideLoading();
+                        CommonUtils.hideLoading();
                         //textView.append("Error occurred while getting request!");
                         t.printStackTrace();
                     }
