@@ -119,7 +119,7 @@ namespace Dream.WebApi
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
