@@ -119,7 +119,7 @@ namespace Dream.WebApi
             }
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -129,6 +129,12 @@ namespace Dream.WebApi
 
             SeederDB.SeedDataByAS(app.ApplicationServices);
 
+            app.Use((context, next) => 
+            {
+                var curDomain = context.Request.Host.Host;
+                Console.WriteLine("Your domain {0}", curDomain);
+                return next();
+            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
