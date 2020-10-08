@@ -79,7 +79,17 @@ namespace Dream.WebApi.Entities
             {
                 var manager = scope.ServiceProvider.GetRequiredService<UserManager<DbUser>>();
                 var managerRole = scope.ServiceProvider.GetRequiredService<RoleManager<DbRole>>();
+                var context = scope.ServiceProvider.GetRequiredService<EFContext>();
                 SeederDB.SeedData(manager, managerRole);
+                string cityname = "Рівне";
+                var city = context.Cities.FirstOrDefault(x => x.Name == cityname);
+                if (city == null)
+                {
+                    city = new City { Name = cityname };
+                    context.Cities.Add(city);
+                    context.SaveChanges();
+                }
+
             }
         }
     }
