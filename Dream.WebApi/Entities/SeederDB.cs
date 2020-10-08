@@ -90,6 +90,21 @@ namespace Dream.WebApi.Entities
                     context.SaveChanges();
                 }
 
+
+
+                string universityName = "Рівненський державний гуманітарний університет";
+                var university = context.Universities.FirstOrDefault(x => x.Name == universityName);
+                if(university==null)
+                {
+                    university = new University
+                    {
+                        Name = universityName,
+                        Image = "https://www.rshu.edu.ua/images/djmediatools/1-front/header.jpg",
+                        CityId = city.Id
+                    };
+                    context.Universities.Add(university);
+                    context.SaveChanges();
+                }
             }
         }
     }
