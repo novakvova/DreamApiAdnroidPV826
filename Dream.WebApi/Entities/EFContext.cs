@@ -18,6 +18,8 @@ namespace Dream.WebApi.Entities
 
         }
         public DbSet<City> Cities { get; set; }
+        public DbSet<University> Universities { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
