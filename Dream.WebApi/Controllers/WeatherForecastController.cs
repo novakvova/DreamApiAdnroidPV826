@@ -13,7 +13,7 @@ namespace Dream.WebApi.Controllers
     {
         private static readonly string[] Summaries = new[]
         {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Україна", "Белорусь", "Польща", "Румунія", "Німеччина", "Тайланд", "Японія", "Молдова", "Грузія", "Африка"
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
