@@ -11,32 +11,85 @@ pipeline  {
         timestamps()
     }
     stages {
-        stage("Stop service") {
+        stage("Stop docker") {
             steps {
                 echo 'Stop process ...'
                 dir('.'){
-                  sh "sudo systemctl stop dreamapi.service"
+                  sh "docker-compose stop"
 
                 }
             }
         }
-		stage("build") {
+		stage("Remove docker") {
             steps {
-                echo 'build ..'
+                echo 'Remove process ...'
                 dir('.'){
-                  sh "dotnet build"
+                  sh "docker-compose rm"
 
                 }
             }
         }
-        stage("start service") {
+		stage("Run docker") {
             steps {
-                 echo 'starting ..'
+                 echo 'Running ..'
                  dir('.'){
-                      sh "sudo systemctl start dreamapi.service"
+                      sh "docker-compose up -d"
+
                  }
             }
         }
+//        stage("docker login") {
+//            steps {
+//                echo " ============== docker login =================="
+//                withCredentials([usernamePassword(credentialsId: 'DockerHub-Credentials', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+//                    sh '''
+//                    docker login -u $USERNAME -p $PASSWORD
+//                    '''
+//                }
+//            }
+//        }
 
+       
+
+//        stage("docker push") {
+//            steps {
+//                echo " ============== pushing image =================="
+//                sh '''
+//                docker push  maxnechiporuk/react-contact-list:latest
+//                '''
+//            }
+//        }
+//       stage("docker stop") {
+//          steps {
+//               echo " ============== stoping all images =================="
+//               sh '''
+//               docker stop carsale
+//               '''
+//           }
+//      }
+//       stage("docker remove") {
+//          steps {
+//               echo " ============== removing all docker containers =================="
+//               sh '''
+//               docker rm carsale
+//               '''
+//           }
+//       }
+//       stage("docker run") {
+//           steps {
+//               echo " ============== starting chatterbox =================="
+//               sh '''
+//              docker run -d --restart=always --name carsale -p 80:80 novakvova/carsale
+//              '''
+//           }
+//      }
+       // stage("Deploy to stage server") {
+       //     steps {
+        //         echo " ============== Running playbook =================="
+        //         sh '''
+        //         ansible-playbook toolbox/ansible/playbooks/demloyToStageServer.yml
+        //         '''
+        //     }
+        //}
     }
 }
