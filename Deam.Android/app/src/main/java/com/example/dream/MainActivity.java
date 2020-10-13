@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, NewsActivity.class);
         startActivity(intent);
     }
+    public void btnGallery(View v) {
+        Intent intent = new Intent(this, GalleryActivity.class);
+        startActivity(intent);
+    }
 
     public void TestGet(View v) {
         NetworkService.getInstance()
