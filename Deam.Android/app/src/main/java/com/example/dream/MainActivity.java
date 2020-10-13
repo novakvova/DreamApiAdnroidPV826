@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+    public void btnNews(View v) {
+        Intent intent = new Intent(this, NewsActivity.class);
+        startActivity(intent);
+    }
 
     public void TestGet(View v) {
         NetworkService.getInstance()
