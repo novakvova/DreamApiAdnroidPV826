@@ -100,8 +100,8 @@
         android:layout_height="wrap_content"
         android:onClick="btnGallery"
         android:text="Gallery"
-        tools:layout_editor_absoluteX="211dp"
-        tools:layout_editor_absoluteY="558dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
