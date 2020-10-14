@@ -46,6 +46,13 @@ public class NewsActivity extends AppCompatActivity {
                     public void onResponse(@NonNull Call<List<University>> call, @NonNull Response<List<University>> response) {
                         if (response.errorBody() == null && response.isSuccessful()) {
                             List<University> post = response.body();
+                            list.clear();
+                            for(University item: post)
+                            {
+                                NewsModel model = new NewsModel(item.getImage(), item.getName());
+                                list.add(model);
+                            }
+                            adapter.notifyDataSetChanged();
                         } else {
                             Toast toast = Toast.makeText(getApplicationContext(), "Not valid login or password" , Toast.LENGTH_LONG);
                             toast.show();

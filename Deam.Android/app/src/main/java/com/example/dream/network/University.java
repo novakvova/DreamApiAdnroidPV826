@@ -9,10 +9,10 @@ public class University {
     private int id;
     @SerializedName("name")
     @Expose
-    private int name;
+    private String name;
     @SerializedName("image")
     @Expose
-    private int image;
+    private String image;
     @SerializedName("cityId")
     @Expose
     private int cityId;
@@ -25,19 +25,19 @@ public class University {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
