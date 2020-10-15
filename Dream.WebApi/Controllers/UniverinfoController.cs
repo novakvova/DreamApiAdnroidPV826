@@ -22,7 +22,15 @@ namespace Dream.WebApi.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var list = _context.Universities.ToList();
+            var list = _context.Universities
+                .Select(x=>new
+                {
+                    x.Id,
+                    x.Name,
+                    Image = "http://10.0.2.2:64828" + x.Image,
+                    x.CityId
+                })
+                .ToList();
             return Ok(list);
         }
 

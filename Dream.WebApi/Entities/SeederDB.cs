@@ -99,7 +99,21 @@ namespace Dream.WebApi.Entities
                     university = new University
                     {
                         Name = universityName,
-                        Image = "https://www.rshu.edu.ua/images/djmediatools/1-front/header.jpg",
+                        Image = "/Uploads/rdhu.jpg",
+                        CityId = city.Id
+                    };
+                    context.Universities.Add(university);
+                    context.SaveChanges();
+                }
+
+                universityName = "Національний університет водного господарства та природокористування";
+                university = context.Universities.FirstOrDefault(x => x.Name == universityName);
+                if (university == null)
+                {
+                    university = new University
+                    {
+                        Name = universityName,
+                        Image = "/Uploads/nuvhp.jpg",
                         CityId = city.Id
                     };
                     context.Universities.Add(university);
